@@ -2,6 +2,7 @@
 import React from 'react';
 import './App.css';
 import { client } from './client';
+import Posts from './components/Posts'
 
 class App extends React.Component {
   state = {
@@ -12,6 +13,9 @@ class App extends React.Component {
     client.getEntries()
       .then((res) => {
         console.log(res)
+        this.setState({
+          articles: res.items
+        })
       })
       .catch(console.error)
   }
@@ -26,7 +30,7 @@ class App extends React.Component {
           </header>
           <main>
             <div className="wrapper">
-
+              <Posts posts={this.state.articles} />
             </div>
           </main>
         </div>
